@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :cart_items
   # before_destroy :ensure_not_referenced_by_any_cart_item
+  paginates_per 9
 
   validates :category_id, presence: true
   validates :image, presence: true

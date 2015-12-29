@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def index
     add_breadcrumb "All"
-    @products = Product.order(created_at: :desc).page(params[:page]).per(9)
+    @products = Product.order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
   def destroy
     if @product.destroy
       flash[:success] = "Product #{@product.title} has been successfully deleted"
-      redirect_to product_path
+      redirect_to products_path
     else
       render 'show'
     end
