@@ -8,7 +8,7 @@
     = csrf_meta_tags
   %body
     = render 'header'
-    -# = render 'flash'
-    -# = render 'breadcrumbs'
+    = render 'flash'
+    = render 'breadcrumbs'
     .container
       = yield

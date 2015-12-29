@@ -1,10 +1,12 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
+  add_breadcrumb "Home", :root_path
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    add_breadcrumb "Sign in"
+    super
+  end
 
   # POST /resource/sign_in
   # def create
