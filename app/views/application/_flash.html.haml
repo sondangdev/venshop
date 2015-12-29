@@ -1,0 +1,7 @@
+.container
+  .row
+    - flash.each do |type, message|
+      .alert.alert-dissmissible{ class: "alert-#{type}" }
+        .pull-left.close{ 'data-dismiss' => "alert", "aria-label" => "Close" }
+          %span{ "aria-hidden" => true } &times;
+          = message

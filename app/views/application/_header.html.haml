@@ -1,0 +1,19 @@
+%nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top
+  .container
+    .navbar-header
+      = link_to "VENSHOP", root_path, class: "navbar-brand"
+    %ul.nav.navbar-nav
+      %li= link_to 'Home', root_path
+      %li= link_to 'Shop', '#'
+    -#   %li
+    -#     - if user_signed_in?
+    -#       = link_to new_product_path do
+    -#         %span.glyphicon.glyphicon-plus
+    -#         New Product
+    -# %ul.nav.navbar-nav.navbar-right
+    -#   - if user_signed_in?
+    -#     %li= link_to current_user.email, edit_user_registration_path
+    -#     %li= link_to 'Logout', destroy_user_session_path, method: :delete
+    -#   - else
+    -#     %li= link_to 'Sign up', new_user_registration_path
+    -#     %li= link_to 'Sign in', new_user_session_path
