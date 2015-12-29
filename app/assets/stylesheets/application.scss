@@ -1,2 +1,35 @@
-@import "bootstrap-sprockets"
-@import "bootstrap"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// General
+
+body {
+  padding-top: 70px;
+}
+
+th, td {
+  text-align: center !important;
+  vertical-align: middle;
+}
+
+// Flash
+
+.container .alert {
+  padding-bottom: 30px;
+  .close {
+    font-size: 20px;
+  }
+}
+
+
+// Products
+
+.image-card {
+  height: 200px;
+}
+
+// Cart
+
+form.button_to {
+  display: inline;
+}
