@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_id: MyString
+  title: MyString
+  manufacturer: MyString
+  description: MyText
+  description: MyText
+  publiscation: 2015-12-29
+  image: MyString
+  price: 1.5
+  category_id: 
+
+two:
+  item_id: MyString
+  title: MyString
+  manufacturer: MyString
+  description: MyText
+  description: MyText
+  publiscation: 2015-12-29
+  image: MyString
+  price: 1.5
+  category_id: 
