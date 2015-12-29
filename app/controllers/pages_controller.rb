@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  add_breadcrumb "Home"
   def home
+    add_breadcrumb "Home"
   end
 end

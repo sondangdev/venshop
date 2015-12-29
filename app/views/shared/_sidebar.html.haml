@@ -1,0 +1,6 @@
+.col-md-3
+  %h3 Categories
+  .list-group
+    -# = link_to "All", products_path, class: "list-group-item #{'active' if current_page?(products_path)}"
+    - Category.all.each do |category|
+      = link_to category.title, categories_path(category), class: "list-group-item #{'active' if current_page?(categories_path(category)) }"
