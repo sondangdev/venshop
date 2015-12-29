@@ -1,0 +1,29 @@
+.row
+  = render 'shared/sidebar'
+  .col-md-9.row
+    %h4 All products
+    .col-md-12.text-right
+      = paginate @products
+    - @products.each do |product|
+      .col-md-4
+        .panel.panel-success
+          .panel-heading
+            = link_to product_path(product) do
+              = truncate(product.title, length: 30, separator: ' ')
+          .panel-body
+            .text-center
+              %p= image_tag product.image_url(:medium)
+            .text-center
+              %p
+                %strong #{product.category.title}
+              %p Price: $#{number_with_precision(product.price, precision: 2)}
+            .text-center
+              -# = button_to "Add to cart", cart_items_path(item_id: product), class: "btn btn-default"
+            - if user_signed_in?
+              .pull-right
+                = link_to edit_product_path(product.id) do
+                  %span.glyphicon.glyphicon-pencil
+                = link_to product_path(product), method: :delete, data: { confirm: "Are you sure?" } do
+                  %span.glyphicon.glyphicon-trash
+    .col-md-12.text-right
+      = paginate @products

@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
 
   belongs_to :category
   has_many :cart_items
-  before_destroy :ensure_not_referenced_by_any_cart_item
+  # before_destroy :ensure_not_referenced_by_any_cart_item
 
   validates :category_id, presence: true
   validates :image, presence: true

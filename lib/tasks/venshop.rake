@@ -1,6 +1,6 @@
 namespace :venshop do
-  desc "Create product categories"
-  task categorize: :environment do
+  desc "Create categories"
+  task create_categories: :environment do
     Category::CATEGORIES.each { |category, browse_node| Category.create(title: category) }
   end
 end
