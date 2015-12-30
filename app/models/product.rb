@@ -5,8 +5,9 @@ class Product < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   belongs_to :category
-  has_many :cart_items
-  # before_destroy :ensure_not_referenced_by_any_cart_item
+  has_many :line_items
+  has_many :carts, through: :line_items
+  before_destroy :ensure_not_referenced_by_any_line_item
   paginates_per 9
 
   validates :category_id, presence: true
@@ -20,4 +21,16 @@ class Product < ActiveRecord::Base
                     format: { with: /\A\d+(?:\.\d{0,2})?\z/ }
 
   mount_uploader :image, ImageUploader
+
+  private
+
+  # Make sure a product is not referenced by any line item
+  def ensure_not_referenced_by_any_line_item
+    if line_item.empty?
+      return true
+    else
+      errors.add(:base, "Line items exist")
+      return false
+    end
+  end
 end

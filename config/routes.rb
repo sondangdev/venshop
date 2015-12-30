@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   }
   root 'pages#home'
   get "categories/:id" => "categories#index", as: "categories"
-  resources :products#, :carts, :cart_items, :orders
+  resources :products, :carts, :line_items#, :orders
 end
