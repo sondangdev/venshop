@@ -4,6 +4,6 @@ class CategoriesController < ApplicationController
   def index
     @category = Category.friendly.find(params[:id])
     add_breadcrumb @category.title
-    @products = Product.where(category_id: params[:id]).order(created_at: :desc).page(params[:page])
+    @products = @category.products.order(created_at: :desc).page(params[:page])
   end
 end
