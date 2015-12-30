@@ -1,8 +1,10 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  add_breadcrumb "Home", :root_path
   # GET /resource/confirmation/new
-  # def new
-  #   super
-  # end
+  def new
+    add_breadcrumb "Resend confirmation instructions"
+    super
+  end
 
   # POST /resource/confirmation
   # def create
