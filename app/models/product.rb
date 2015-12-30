@@ -1,6 +1,9 @@
 class Product < ActiveRecord::Base
   require 'carrierwave/orm/activerecord'
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   belongs_to :category
   has_many :cart_items
   # before_destroy :ensure_not_referenced_by_any_cart_item

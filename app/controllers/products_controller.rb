@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @category = Category.find(@product.category_id)
+    @category = Category.friendly.find(@product.category_id)
     add_breadcrumb @category.title, categories_path(@category.id)
     add_breadcrumb @product.title
   end
@@ -63,6 +63,6 @@ class ProductsController < ApplicationController
   end
 
   def find_product
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 end
