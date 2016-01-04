@@ -1,0 +1,41 @@
+.row
+  = form_for @order do |f|
+    .col-md-offset-1.col-md-6
+      %h2 Please enter your details
+      .form-group
+        = f.label :name
+        = f.text_area :name, value: "#{current_user.first_name} #{current_user.last_name}", class: "form-control"
+      .form-group
+        = f.label :email
+        = f.email_field :email, value: current_user.email, class: "form-control"
+      .form-group
+        = f.label :address
+        = f.text_area :address, value: current_user.address, class: "form-control"
+      .form-group
+        = f.label :contact_number
+        = f.phone_field :contact_number, class: "form-control"
+      .form-group
+        = f.label :pay_type, "Payment method"
+        = f.select :pay_type, Order::PAY_TYPES, { prompt: "Select a payment method" }, { class: "form-control" }
+    .col-md-offset-1.col-md-4
+      = f.submit "Place Order", class: "btn btn-success cart-btn"
+      = link_to "Back to cart", cart_path, class: "btn btn-danger cart-btn"
+      .panel.panel-default
+        %table.table
+          %thead
+            %tr
+              %th Products
+              %th Quantity
+              %th Price
+          %tbody
+            - @cart.line_items.each do |line_item|
+              %tr
+                %td= line_item.product.title
+                %td= line_item.quantity
+                %td= line_item.total_price
+            %tr
+              %td
+              %td
+                %strong TOTAL
+              %td
+                %strong= @cart.total_price

@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160104084154) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.string   "name",           limit: 255
     t.string   "order_number",   limit: 255
     t.text     "address",        limit: 65535
     t.string   "contact_number", limit: 255

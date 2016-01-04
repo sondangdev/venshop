@@ -39,4 +39,4 @@
                 %strong= @cart.total_price
       = link_to "Back to shopping", products_path, class: "btn btn-primary cart-btn"
       = button_to "Empty Cart", cart_path, method: :delete, data: { confirm: "Are your sure?" }, class: "btn btn-danger cart-btn"
-      -# = button_to "Checkout", new_order_path, method: :get, class: "btn btn-success cart-btn"
+      = button_to "Checkout", new_order_path, method: :get, class: "btn btn-success cart-btn"
