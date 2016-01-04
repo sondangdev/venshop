@@ -20,8 +20,8 @@
             - if user_signed_in?
               .pull-right
                 = link_to edit_product_path(product.id) do
-                  %span.glyphicon.glyphicon-pencil
+                  %span.fa.fa-lg.fa-pencil
                 = link_to product_path(product), method: :delete, data: { confirm: "Are you sure?" } do
-                  %span.glyphicon.glyphicon-trash
+                  %span.fa.fa-lg.fa-trash
     .col-md-12.text-right
       = paginate @products

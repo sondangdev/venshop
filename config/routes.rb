@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   }
   root 'pages#home'
   get "categories/:id" => "categories#index", as: "categories"
-  resources :products, :carts, :line_items#, :orders
+  resources :products, :line_items#, :orders
+  resource :cart, only: [:show, :destroy]
+  resources :carts, only: :create
 end

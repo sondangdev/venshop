@@ -1,0 +1,42 @@
+.row
+  - if @cart.line_items.empty?
+    .col-md-12
+      .text-center
+        %h1 Your cart is currently empty
+        %br
+        = link_to "Back to shopping", products_url, class: "btn btn-primary"
+  -else
+    .col-md-9
+      .panel.panel-default.text-center
+        %table.table
+          %thead
+            %tr
+              %th Product Image
+              %th Products
+              %th Unit price
+              %th Quantity
+              %th Price
+              %th
+          %tbody
+            - @cart.line_items.each do |line_item|
+              %tr
+                %td= image_tag line_item.product.image_url(:thumb)
+                %td= line_item.product.title
+                %td= line_item.product.price
+                %td= line_item.quantity
+                %td= line_item.total_price
+                %td
+                  = link_to line_item_path(line_item), method: :delete, data: { confirm: "Do you want to remove this product?" } do
+                    %span.fa.fa-lg.fa-remove
+    .col-md-3
+      .panel.panel-default
+        %table.table
+          %thead
+            %tr
+              %td
+                %strong TOTAL
+              %td
+                %strong= @cart.total_price
+      = link_to "Back to shopping", products_path, class: "btn btn-primary cart-btn"
+      = button_to "Empty Cart", cart_path, method: :delete, data: { confirm: "Are your sure?" }, class: "btn btn-danger cart-btn"
+      -# = button_to "Checkout", new_order_path, method: :get, class: "btn btn-success cart-btn"

@@ -9,7 +9,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :description
       t.date :publiscation_date
       t.string :image
-      t.float :price
+      t.float :price, precision: 2, scale: 2
       t.references :category, index: true, foreign_key: true
     end
   end

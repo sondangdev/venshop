@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 // General
 
@@ -34,6 +36,7 @@ th, td {
 
 // Cart
 
-form.button_to {
-  display: inline;
+.cart-btn {
+  margin-bottom: 5px;
+  width: 100%;
 }
