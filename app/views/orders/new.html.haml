@@ -13,7 +13,7 @@
         = f.text_area :address, value: current_user.address, class: "form-control"
       .form-group
         = f.label :contact_number
-        = f.text_field :contact_number, class: "form-control"
+        = f.telephone_field :contact_number, value: current_user.contact_number, class: "form-control"
       .form-group
         = f.label :pay_type, "Payment method"
         = f.select :pay_type, Order::PAY_TYPES, { prompt: "Select a payment method" }, { class: "form-control" }

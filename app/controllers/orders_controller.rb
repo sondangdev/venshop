@@ -22,6 +22,8 @@ class OrdersController < ApplicationController
     @order.add_line_items_from_cart(current_cart)
 
     if @order.save
+      current_user.update_attributes(address: @order.address) if current_user.address.nil?
+      current_user.update_attributes(contact_number: @order.contact_number) if current_user.contact_number.nil?
       Cart.destroy(current_cart)
       OrderMailer.order_received(@order).deliver
       redirect_to order_url(@order)
