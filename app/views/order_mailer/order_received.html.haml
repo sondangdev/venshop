@@ -1,0 +1,27 @@
+%p Dear #{@order.name},
+
+%p Thank you for your recent order from Venstore.
+%p You ordered the following items:
+
+%table{ style: "width: 600px; margin: 5px; padding: 10px; text-align: center" }
+  %tbody
+    %tr
+      %th Product title
+      %th Quantity
+      %th Price
+    - @order.line_items.each do |item|
+      %tr
+        %td
+          = link_to product_path(item.product) do
+            = item.product.title
+        %td= item.quantity
+        %td= item.total_price
+    %tr
+      %td
+        %td
+          %strong Total
+      %td
+        %strong= @order.total_price
+
+We'll send you a separate e-mail when your order ships.
+

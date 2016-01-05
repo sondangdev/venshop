@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
   def new
     add_breadcrumb "New order"
 
-    @user = current_user
     @cart = current_cart
     if @cart.line_items.empty?
       redirect_to products_url, alert: "Your cart is empty"
@@ -24,6 +23,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       Cart.destroy(current_cart)
+      OrderMailer.order_received(@order).deliver
       redirect_to order_url(@order)
     else
       @cart = current_cart

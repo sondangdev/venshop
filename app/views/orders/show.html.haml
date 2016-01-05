@@ -28,12 +28,18 @@
         %table.table
           %thead
             %tr
+              %th Product ID
               %th Product title
               %th Quantity
           %tbody
             - @order.line_items.each do |line_item|
               %tr
+                %td= line_item.product.item_id
                 %td= line_item.product.title
                 %td= line_item.quantity
+            %tr
+              %td
+              %td Total
+              %td= @order.total_price
     .text-center
       = link_to "Back to shopping", products_path, class: "btn btn-primary"
