@@ -1,4 +1,8 @@
 class Order < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :order_number, use: :slugged
+  paginates_per 20
+
   has_many :line_items, dependent: :destroy
   belongs_to :user
   PAY_TYPES = [ "Cash on Delivery", "Credit Card", "Internet Banking" ]

@@ -3,6 +3,7 @@
   .col-md-9
     %h2 Your orders
     - if @orders.present?
+      = paginate @orders
       .panel.panel-default
         .panel-body
           %table.table
@@ -19,6 +20,7 @@
                       #{order.order_number}
                   %td $#{order.total_price}
                   %td= order.created_at.strftime("%d/%m/%Y")
+      = paginate @orders
     - else
       .text-center
         %h3 You currently have no order

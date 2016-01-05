@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   add_breadcrumb "Home", :root_path
-  before_action :find_order, only: [:show, :edit, :update, :destroy]
+  before_action :find_order, only: [:edit, :update, :destroy]
 
   def new
     add_breadcrumb "New order"
@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
   def show
     add_breadcrumb "Your order"
     if current_user
-      @order = Order.find(params[:id])
+      @order = Order.friendly.find(params[:id])
     else
       redirect_to root_path
     end
@@ -45,13 +45,13 @@ class OrdersController < ApplicationController
 
   def index
     add_breadcrumb "Your orders"
-    @orders = Order.where(user_id: current_user)
+    @orders = Order.where(user_id: current_user).page(params[:page])
   end
 
   private
 
   def find_order
-    @order = Order.find(params[:id])
+    @order = Order.friendly.find(params[:id])
   end
 
   def order_params

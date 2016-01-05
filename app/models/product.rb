@@ -3,12 +3,12 @@ class Product < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+  paginates_per 9
 
   belongs_to :category
   has_many :line_items
   has_many :carts, through: :line_items
   before_destroy :ensure_not_referenced_by_any_line_item
-  paginates_per 9
 
   validates :category_id, presence: true
   validates :image, presence: true
