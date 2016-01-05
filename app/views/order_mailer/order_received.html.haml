@@ -12,7 +12,7 @@
     - @order.line_items.each do |item|
       %tr
         %td
-          = link_to product_path(item.product) do
+          = link_to product_url(item.product) do
             = item.product.title
         %td= item.quantity
         %td= item.total_price
