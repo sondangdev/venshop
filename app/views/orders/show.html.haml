@@ -1,0 +1,39 @@
+.row
+  .col-md-offset-2.col-md-8
+    .text-center
+      %h2 YOUR ORDER
+      %hr
+      %h4 Thank you for purchasing online with Venstore
+      %p Below are the information of your purchase
+    .panel.panel-default
+      .panel-body
+        %p
+          %strong Order number:
+          %span= @order.order_number
+        %p
+          %strong Total price:
+          %span $#{@order.total_price}
+        %p
+          %strong Name:
+          %span= @order.name
+        %p
+          %strong Email:
+          %span= @order.email
+        %p
+          %strong Address:
+          %span= @order.address
+        %p
+          %strong Contact number:
+          %span= @order.contact_number
+        %table.table
+          %thead
+            %tr
+              %th Product title
+              %th Quantity
+          %tbody
+            - @order.line_items.each do |line_item|
+              %tr
+                %td= line_item.product.title
+                %td= line_item.quantity
+    .text-center
+      = link_to "Back to shopping", products_path, class: "btn btn-primary"

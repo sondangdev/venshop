@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   def new
     add_breadcrumb "New order"
 
+    @user = current_user
     @cart = current_cart
     if @cart.line_items.empty?
       redirect_to products_url, alert: "Your cart is empty"
@@ -16,8 +17,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(user_id: current_user.id)
-    @order.order_number = SecureRandom.hex
+    @order = Order.new(order_params)
+    @order.user_id = current_user.id
+    @order.order_number = SecureRandom.hex.upcase
     @order.add_line_items_from_cart(current_cart)
 
     if @order.save
@@ -25,6 +27,7 @@ class OrdersController < ApplicationController
       redirect_to order_url(@order)
     else
       @cart = current_cart
+      add_breadcrumb "New order"
       render 'new'
     end
   end
@@ -38,6 +41,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def index
+    add_breadcrumb "Your orders"
+    @orders = Order.where(user_id: current_user)
+  end
+
   private
 
   def find_order
@@ -45,6 +53,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address, :contact_number, :email, :pay_type, :user_id)
+    params.require(:order).permit(:order_number, :name, :address, :contact_number, :email, :pay_type, :user_id)
   end
 end

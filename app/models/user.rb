@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :confirmable
   validates :first_name, :last_name, presence: true
 
-  def current_cart
+  def personal_cart
     Cart.create(user: self) unless self.cart.present?
     self.cart
   end

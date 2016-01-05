@@ -1,0 +1,20 @@
+.row
+  = render "shared/profile_sidebar"
+  .col-md-9
+    %h2 Your orders
+    .panel.panel-default
+      .panel-body
+        %table.table
+          %thead
+            %tr
+              %th Order Number
+              %th Total Price
+              %th Order Date
+          %tbody
+            - @orders.each do |order|
+              %tr
+                %td
+                  = link_to order_path(order) do
+                    #{order.order_number}
+                %td $#{order.total_price}
+                %td= order.created_at.strftime("%d/%m/%Y")
