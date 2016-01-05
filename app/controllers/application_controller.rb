@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     session_cart = Cart.find(session[:cart_id])
 
     session_cart.line_items.each do |item|
-      current_user.personal_cart.add_product(item.product_id).save
+      current_user.personal_cart.add_product(item.product_id, item.quantity).save
     end
 
     session_cart.destroy
