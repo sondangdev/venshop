@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :products, :line_items, :orders
   resource :cart, only: [:show, :destroy]
   resources :carts, only: :create
+  get "search" => "products#search", as: "search"
 end

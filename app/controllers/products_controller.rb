@@ -53,7 +53,14 @@ class ProductsController < ApplicationController
     else
       render 'show'
     end
+  end
 
+  def search
+    add_breadcrumb "Search"
+    @search = Product.search do
+      fulltext params[:query]
+    end
+    @products = @search.results#.page(params[:page])
   end
 
   private

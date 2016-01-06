@@ -1,0 +1,27 @@
+.row
+  = render 'shared/sidebar'
+  .col-md-9
+    %h3 Search results
+    %p We found #{@products.count} results
+    .text-right
+      = paginate @products
+    - @products.each do |product|
+      .row.search
+        .col-md-3.text-center
+          = link_to product_path(product) do
+            = image_tag product.image_url(:medium)
+        .col-md-9
+          %h4
+            = link_to product do
+              = product.title.html_safe
+          %p
+            %strong Category: #{product.category.title}
+          %p Item ID: #{product.item_id}
+          %p Manufactured by #{product.manufacturer}
+          %p
+            %strong $#{product.price}
+          %p= product.description.truncate_words(50).html_safe
+          .text-right
+            = link_to "Read More", product_path(product)
+    .text-right
+      = paginate @products

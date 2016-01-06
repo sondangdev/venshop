@@ -3,7 +3,14 @@ class Product < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+
   paginates_per 9
+
+  searchable do
+    text :title, boost: 2
+    text :item_id
+    text :manufacturer
+  end
 
   belongs_to :category
   has_many :line_items

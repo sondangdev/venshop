@@ -26,6 +26,10 @@ gem 'mini_magick'
 gem 'vacuum'
 gem 'friendly_id'
 
+# Search
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'byebug'

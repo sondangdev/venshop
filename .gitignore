@@ -13,3 +13,4 @@
 /tmp
 /public/uploads
 /config/local_env.yml
+/solr
