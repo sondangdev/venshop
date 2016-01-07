@@ -1,7 +1,10 @@
 namespace :venshop do
   desc "Create categories"
   task create_categories: :environment do
-    Category::CATEGORIES.each { |category, browse_node| Category.create(title: category) }
+    Category::CATEGORIES.each do |category, browse_node|
+      Category.create(title: category)
+      puts "#{category} is created"
+    end
   end
 
   desc "Update products from Amazon"

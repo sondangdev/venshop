@@ -34,7 +34,7 @@ class AmazonFetcher
               product.description = editorial_review["Content"]
             end
 
-            product.price = response["ItemAttributes"]["ListPrice"] != nil ? response["ItemAttributes"]["ListPrice"]["Amount"].to_f / 100 : response["OfferSummary"]["LowestNewPrice"]["Amount"].to_f / 100
+            product.price = response["ItemAttributes"]["ListPrice"] != nil ? response["ItemAttributes"]["ListPrice"]["Amount"].to_d / 100 : response["OfferSummary"]["LowestNewPrice"]["Amount"].to_d / 100
             product.category_id = category.id
             if response["LargeImage"] == nil
               product.remote_image_url = response["ImageSets"]["ImageSet"].is_a?(Array) ? response["ImageSets"]["ImageSet"].first["LargeImage"]["URL"] : response["ImageSets"]["ImageSet"]["LargeImage"]["URL"]
@@ -43,6 +43,7 @@ class AmazonFetcher
             end
             product.publiscation_date = response["ItemAttributes"]["PublicationDate"]
             product.manufacturer = response["ItemAttributes"]["Manufacturer"]
+            puts "#{product.title} is fetched and updated successfully"
           end
         end
       end
