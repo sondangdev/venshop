@@ -1,7 +1,8 @@
 .row
   = render 'shared/sidebar'
   .col-md-9.row
-    %h4 All products
+    .col-md-12
+      %h3 All products
     .col-md-12.text-right
       = paginate @products
     - @products.each do |product|

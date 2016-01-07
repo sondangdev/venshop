@@ -1,9 +1,11 @@
 .row
   = render 'shared/sidebar'
   .col-md-9
-    %h3 Search results
-    %p We found #{@products.count} results
-    .text-right
+    .col-md-12
+      %h3 Search results
+    .col-md-6
+      %p We found #{pluralize(@total_results, 'result')}
+    .col-md-6.text-right
       = paginate @products
     - @products.each do |product|
       .row.search
@@ -13,14 +15,15 @@
         .col-md-9
           %h4
             = link_to product do
-              = product.title.html_safe
-          %p
-            %strong Category: #{product.category.title}
-          %p Item ID: #{product.item_id}
-          %p Manufactured by #{product.manufacturer}
+              = product.title
+          -# %p
+          -#   = link_to categories_path(product.category) do
+          -#     %strong #{product.category.title}
           %p
             %strong $#{product.price}
-          %p= product.description.truncate_words(50).html_safe
+          %p ID: #{product.item_id}
+          %p Manufactured by #{product.manufacturer}
+          %p= simple_format product.description.truncate_words(50)
           .text-right
             = link_to "Read More", product_path(product)
     .text-right

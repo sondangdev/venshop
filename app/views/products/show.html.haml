@@ -20,4 +20,4 @@
                 %span.fa.fa-lg.fa-trash
           = button_to "Add to cart", line_items_path(product_id: @product), class: "btn btn-default"
         .col-md-12
-          %p= @product.description.html_safe
+          %p= simple_format @product.description

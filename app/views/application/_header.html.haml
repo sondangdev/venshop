@@ -6,19 +6,19 @@
       %li
         = link_to "Shop", products_path
       %li
-        - if user_signed_in?
+        = link_to cart_url do
+          %span.fa.fa-shopping-cart.fa-lg
+    = form_tag search_path, method: :get, class: "navbar-form navbar-left" do
+      .input-group.search-box
+        = text_field_tag :query, params[:query], placeholder: "Search product...", class: "form-control"
+        .input-group-btn
+          = submit_tag "Search", name: nil, class: "btn btn-default"
+    %ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        %li
           = link_to new_product_path do
             %span.fa.fa-plus.fa-lg
             New Product
-    = form_tag search_path, method: :get, class: "navbar-form navbar-left" do
-      .form-group
-        = text_field_tag :query, params[:query], class: "form-control"
-      = submit_tag "Search", name: nil, class: "btn btn-default"
-    %ul.nav.navbar-nav.navbar-right
-      %li
-        = link_to cart_url do
-          %span.fa.fa-shopping-cart.fa-lg
-      - if user_signed_in?
         %li
           = link_to "#", data: { toggle: "dropdown" }, class: "dropdown-toggle", id: "dropdownMenu1", role: "button", aria: { expanded: false } do
             = current_user.email

@@ -34,6 +34,10 @@ th, td {
   height: 200px;
 }
 
+.pagination {
+  margin-top: 0 !important;
+}
+
 // Cart
 
 .cart-btn {
@@ -47,4 +51,9 @@ th, td {
   padding: 0 0 30px 0;
   margin: 0 0 30px 0;
   border-bottom: solid 1px grey;
+}
+
+.search-box {
+  margin-left: 50px;
+  width: 550px;
 }

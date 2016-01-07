@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
   paginates_per 9
 
   searchable do
-    text :title, boost: 2
+    text :title
     text :item_id
     text :manufacturer
   end

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index, :search]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   add_breadcrumb "Home", :root_path
@@ -59,8 +59,10 @@ class ProductsController < ApplicationController
     add_breadcrumb "Search"
     @search = Product.search do
       fulltext params[:query]
+      paginate page: params[:page], per_page: 15
     end
-    @products = @search.results#.page(params[:page])
+    @products = @search.results
+    @total_results = @search.total
   end
 
   private
