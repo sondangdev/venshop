@@ -19,7 +19,7 @@
                 %strong #{product.category.title}
               %p Price: $#{number_with_precision(product.price, precision: 2)}
             .text-center
-              = button_to "Add to cart", line_items_path(product_id: product), class: "btn btn-default"
+              = button_to "Add to cart", buy_items_path(product, qty: 1), class: "btn btn-default"
             - if user_signed_in?
               .pull-right
                 = link_to edit_product_path(product.id) do

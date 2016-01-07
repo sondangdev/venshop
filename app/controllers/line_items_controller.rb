@@ -3,14 +3,15 @@ class LineItemsController < ApplicationController
   def create
     @cart = current_cart
     product = Product.friendly.find(params[:product_id])
-    @line_item = @cart.add_product(product.id)
+    qty = params[:qty].to_i
+    @line_item = @cart.add_product(product.id, qty)
 
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to cart_url, success: "#{product} was successfully added to your cart" }
         format.xml { render :xml => @line_item , status: created, location: line_item }
       else
-        format.html { render 'new' }
+        format.html { render "products/#{product}" }
         format.xml { render :xml => @line_item.errors, status: unprocessable_entity }
       end
     end
