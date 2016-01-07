@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "categories/:id" => "categories#index", as: "categories"
   post "line_items/:product_id" => "line_items#create", as: "buy_items"
   resources :products, :line_items, :orders
+  resources :products, :orders
+  resources :line_items, only: :destroy
   resource :cart, only: [:show, :destroy]
   resources :carts, only: :create
   get "search" => "products#search", as: "search"
