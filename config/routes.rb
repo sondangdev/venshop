@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post "line_items/:product_id" => "line_items#create", as: "buy_items"
   resources :products, :line_items, :orders
   resources :products, :orders
-  resources :line_items, only: :destroy
+  resources :line_items, except: :create
   resource :cart, only: [:show, :destroy]
   resources :carts, only: :create
   get "search" => "products#search", as: "search"

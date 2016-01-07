@@ -17,6 +17,21 @@ class LineItemsController < ApplicationController
     end
   end
 
+  def update
+    @line_item = LineItem.find(params[:id])
+    qty = params[:qty].to_i
+
+    respond_to do |format|
+      if @line_item.update_attributes(quantity: qty)
+        format.html { redirect_to cart_url, success: "#{@line_item.product.title} was changed" }
+        format.xml { render :xml => @line_item , status: created, location: line_item }
+      else
+        format.html { redirect_to cart_url, success: "#{@line_item.product.title} was not changed" }
+        format.xml { render :xml => @line_item.errors, status: unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @line_item = LineItem.find(params[:id])
 
