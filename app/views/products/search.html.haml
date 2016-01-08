@@ -3,9 +3,8 @@
   .col-md-9
     .col-md-12
       %h3 Search results
-    .col-md-6
-      %p We found #{pluralize(@total_results, 'result')}
-    .col-md-6.text-right
+      %span We found #{pluralize(@total_results, 'result')}
+    .text-right
       = paginate @products
     - @products.each do |product|
       .row.search
