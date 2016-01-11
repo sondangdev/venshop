@@ -24,7 +24,8 @@
                 %td= line_item.product.title
                 %td $#{line_item.product.price}
                 %td
-                  = form_tag line_item_path(line_item), method: :patch do
+                  = form_tag line_item_path(line_item), method: :patch, remote: true do
+                    = hidden_field_tag :authenticity_token, form_authenticity_token
                     .input-group.qty-cart
                       = number_field_tag :qty, line_item.quantity, class: "form-control", min: 1, onchange: "this.form.submit()"
 
