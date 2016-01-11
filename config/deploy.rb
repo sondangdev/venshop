@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'venstore'
-set :repo_url, 'git@gitlab.zigexn.vn:sondnm/venshop.git'
+set :repo_url, 'git@bitbucket.org:sondangdev/venstore.git'
 
 set :deploy_to, '/home/deploy/venstore'
 
