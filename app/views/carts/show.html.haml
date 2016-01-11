@@ -20,7 +20,7 @@
           %tbody
             - @cart.line_items.each do |line_item|
               %tr
-                %td= image_tag line_item.product.image_url(:thumb)
+                %td = image_tag line_item.product.image_url(:thumb)
                 %td= line_item.product.title
                 %td $#{line_item.product.price}
                 %td
