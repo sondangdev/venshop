@@ -21,3 +21,4 @@
 /solr/default/data
 /log/*.log.lck
 /solr/pids
+/config/databse.yml
