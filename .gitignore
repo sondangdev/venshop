@@ -13,11 +13,10 @@
 /tmp
 /public/uploads
 /config/local_env.yml
-/solr
 /config/database.yml
-/solr/data
-/solr/test
-/solr/development
-/solr/default/data
+solr/data
+solr/test
+solr/development
+solr/default/data
 /log/*.log.lck
-/solr/pids
+solr/pids
