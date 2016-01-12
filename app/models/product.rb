@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
 
   paginates_per 9
 
-  searchable do
+  searchable auto_index: false do
     text :title
     text :item_id
     text :manufacturer

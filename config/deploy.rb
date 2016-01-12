@@ -6,7 +6,7 @@ set :repo_url, 'git@bitbucket.org:sondangdev/venstore.git'
 
 set :deploy_to, '/home/deploy/venstore'
 
-set :linked_files, %w{config/database.yml config/secrets.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml config/local_env.yml}
 set :linked_urls, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :deploy do
