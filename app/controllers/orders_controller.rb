@@ -10,6 +10,12 @@ class OrdersController < ApplicationController
     if @cart.line_items.empty?
       redirect_to products_url, alert: "Your cart is empty"
       return
+    elsif @cart.line_items.any? { |item| item.quantity <= 0 }
+      redirect_to cart_url, alert: "Item quantity must be at least 1"
+      return
+    elsif @cart.line_items.any? { |item| item.quantity > item.product.stock }
+      redirect_to cart_url, alert: "Item exceeds stock"
+      return
     end
 
     @order = Order.new
@@ -22,6 +28,7 @@ class OrdersController < ApplicationController
     @order.add_line_items_from_cart(current_cart)
 
     if @order.save
+      @order.remove_stock_from_product
       current_user.update_attributes(address: @order.address) if current_user.address.nil?
       current_user.update_attributes(contact_number: @order.contact_number) if current_user.contact_number.nil?
       Cart.destroy(current_cart)

@@ -17,6 +17,14 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def remove_stock_from_product
+    line_items.each do |item|
+      product = item.product
+      product.stock -= item.quantity
+      product.save
+    end
+  end
+
   def total_price
     line_items.to_a.sum { |line_item| line_item.total_price }
   end
