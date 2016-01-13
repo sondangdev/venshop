@@ -14,14 +14,18 @@
                     = truncate(product.title, length: 30, separator: ' ')
                 .panel-body
                   .text-center
-                    %p= image_tag product.image_url(:medium)
+                    = link_to product_path(product) do
+                      = image_tag product.image_url(:medium)
                   .text-center
                     %p
                       %strong #{product.category.title}
                     %p Price: $#{number_with_precision(product.price, precision: 2)}
                   .text-center
-                    = button_to "Add to cart", buy_items_path(product, qty: 1), class: "btn btn-default"
+                    - if product.stock <= 0
+                      %p Out of stock
+                    - else
+                      = button_to "Add to cart", buy_items_path(product, qty: 1), class: "btn btn-default"
           .text-center
-            %h2
+            %h3
               = link_to categories_path(category) do
                 More >>>

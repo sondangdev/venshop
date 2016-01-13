@@ -19,8 +19,13 @@
               = link_to product_path(@product), method: :delete, data: { confirm: "Are you sure?" } do
                 %span.fa.fa-lg.fa-trash
           = form_tag buy_items_path(@product), format: "html" do |f|
-            .input-group.qty
-              = number_field_tag "qty", 1, class: "form-control", step: 'any', min: 1
-            = button_tag "Add to cart", type: "submit", class: "btn btn-default"
+            - if @product.stock <= 0
+              %p Out of stock
+            - else
+              %p
+                %em #{pluralize(@product.stock, 'book')} available
+              .input-group.qty
+                = number_field_tag "qty", 1, class: "form-control", step: 'any', min: 1, max: @product.stock
+              = button_tag "Add to cart", type: "submit", class: "btn btn-default"
         .col-md-12
           %p= simple_format @product.description

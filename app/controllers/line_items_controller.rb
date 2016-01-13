@@ -10,6 +10,7 @@ class LineItemsController < ApplicationController
       if @line_item.save
         format.html { redirect_to cart_url, success: "#{product} was successfully added to your cart" }
         format.xml { render :xml => @line_item , status: created, location: line_item }
+        format.js { head :ok }
       else
         format.html { render "products/#{product}" }
         format.xml { render :xml => @line_item.errors, status: unprocessable_entity }

@@ -43,7 +43,8 @@ class AmazonFetcher
             end
             product.publiscation_date = response["ItemAttributes"]["PublicationDate"]
             product.manufacturer = response["ItemAttributes"]["Manufacturer"]
-            puts "#{product.title} is fetched and updated successfully"
+            product.stock = rand(2..20)
+            puts "#{product.title} is fetched and updated successfully" if product.save
           end
         end
       end
