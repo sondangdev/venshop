@@ -1,0 +1,26 @@
+.row
+  = render "shared/admin_sidebar"
+  .col-md-9
+    %h2 All orders
+    - if @orders.present?
+      = paginate @orders
+      .panel.panel-default
+        .panel-body
+          %table.table
+            %thead
+              %tr
+                %th Order Number
+                %th Order Owner
+                %th Total Price
+                %th Order Date
+            %tbody
+              - @orders.each do |order|
+                %tr
+                  %td= order.order_number
+                  %td #{order.user.first_name} #{order.user.last_name}
+                  %td $#{order.total_price}
+                  %td= order.created_at.strftime("%d/%m/%Y")
+      = paginate @orders
+    - else
+      .text-center
+        %h3 We currently have no order
