@@ -7,6 +7,7 @@
 
 body {
   padding-top: 70px;
+  height: 100%;
 }
 
 th, td {
@@ -18,6 +19,34 @@ th, td {
   margin-left: 0px !important;
 }
 
+footer {
+  background-color: #eee;
+  padding-top: 15px;
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 97%;
+}
+
+.page-wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 97%;
+  margin: 0 auto -4em;
+}
+
+.page-wrap:after {
+  display: block;
+}
+
+.footer, .page-wrap:after {
+  height: 4em;
+}
+
 // Flash
 
 .container .alert {
@@ -26,7 +55,6 @@ th, td {
     font-size: 20px;
   }
 }
-
 
 // Products
 

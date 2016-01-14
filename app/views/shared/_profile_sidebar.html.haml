@@ -2,4 +2,4 @@
   %h2 Your account
   .list-group
     = link_to "Edit profile", edit_user_registration_path, class: "list-group-item #{'active' if current_page?(edit_user_registration_path)}"
-    =link_to "Your orders", orders_path, class: "list-group-item #{'active' if current_page?(orders_path)}"
+    = link_to "Your orders", orders_path, class: "list-group-item #{'active' if current_page?(orders_path)}"

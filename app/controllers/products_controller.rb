@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index, :search]
+  before_action :authenticate_admin!, except: [:show, :index, :search]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   add_breadcrumb "Home", :root_path

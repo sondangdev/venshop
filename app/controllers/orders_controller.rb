@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :index, :show]
+  before_action :authenticate_admin!, only: :index_all
+
   add_breadcrumb "Home", :root_path
   before_action :find_order, only: [:edit, :update, :destroy]
 
@@ -53,6 +55,11 @@ class OrdersController < ApplicationController
   def index
     add_breadcrumb "Your orders"
     @orders = Order.where(user_id: current_user).page(params[:page])
+  end
+
+  def index_all
+    add_breadcrumb "All orders"
+    @orders = Order.order(created_at: :desc).all.page(params[:page])
   end
 
   private
