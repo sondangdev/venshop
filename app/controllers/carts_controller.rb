@@ -7,6 +7,13 @@ class CartsController < ApplicationController
   def show
     add_breadcrumb "Your cart"
     @cart = current_cart
+    @cart.line_items.each do |item|
+      if item.quantity <= 0
+        item.destroy
+        redirect_to cart_url, alert: "Item quantity must be at least 1"
+        return
+      end
+    end
   rescue ActiveRecord::RecordNotFound
     logger.error "Attempt to access invalid cart"
     redirect_to products_url, notice: "Invalid cart"
