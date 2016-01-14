@@ -1,0 +1,25 @@
+.row
+  = render "shared/admin_sidebar"
+  .col-md-9
+    %h2 All users
+    - if @users.present?
+      = paginate @users
+      .panel.panel-default
+        .panel-body
+          %table.table
+            %thead
+              %tr
+                %th Name
+                %th Email
+                %th Registration Date
+            %tbody
+              - @users.each do |user|
+                %tr
+                  %td= user.first_name + " " + user.last_name
+                  %td= user.email
+                  %td= user.created_at.strftime("%d/%m/%Y")
+      = paginate @users
+    - else
+      .text-center
+        %h3 You currently have no user
+        = link_to "Shop now", products_path, class: "btn btn-primary"

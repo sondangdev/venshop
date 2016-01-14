@@ -1,7 +1,7 @@
 %nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top
   .container
     .navbar-header
-      = link_to "VENSHOP", root_path, class: "navbar-brand"
+      = link_to "VENSTORE", root_path, class: "navbar-brand"
     %ul.nav.navbar-nav
       %li
         = link_to "Shop", products_path
@@ -14,11 +14,12 @@
         .input-group-btn
           = submit_tag "Search", name: nil, class: "btn btn-default"
     %ul.nav.navbar-nav.navbar-right
-      - if user_signed_in?
+      - if admin_signed_in?
         %li
           = link_to new_product_path do
             %span.fa.fa-plus.fa-lg
             New Product
+      - elsif user_signed_in?
         %li
           = link_to "#", data: { toggle: "dropdown" }, class: "dropdown-toggle", id: "dropdownMenu1", role: "button", aria: { expanded: false } do
             = current_user.email

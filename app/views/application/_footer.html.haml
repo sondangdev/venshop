@@ -1,0 +1,15 @@
+%footer.footer.navbar
+  .container.text-muted
+    &copy; Venstore 2016
+    .navbar.navbar-nav.navbar-right
+      - if admin_signed_in?
+        .dropup
+          = link_to "#", data: { toggle: "dropdown" }, class: "dropdown-toggle", id: "dropdownMenu1", role: "button", aria: { expanded: false } do
+            = current_admin.email
+            %span.fa.fa-caret-down
+          %ul.dropdown-menu{ aria: { labelledly: "dropdownMenu1" } }
+            %li= link_to "Users", users_path
+            %li= link_to "Orders", all_orders_path
+            %li= link_to 'Logout', destroy_admin_session_path, method: :delete
+      - else
+        %p= link_to "Admin login", new_admin_session_path

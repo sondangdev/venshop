@@ -1,0 +1,5 @@
+.col-md-3
+  %h2 Administration
+  .list-group
+    = link_to "All users", users_path, class: "list-group-item #{'active' if current_page?(users_path)}"
+    = link_to "All orders", all_orders_path, class: "list-group-item #{'active' if current_page?(all_orders_path)}"

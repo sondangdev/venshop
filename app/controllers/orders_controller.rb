@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :index, :show]
+  before_action :authenticate_admin!, only: :index_all
+
   add_breadcrumb "Home", :root_path
   before_action :find_order, only: [:edit, :update, :destroy]
 
@@ -7,13 +9,14 @@ class OrdersController < ApplicationController
     add_breadcrumb "New order"
 
     @cart = current_cart
-    if @cart.line_items.empty?
+    line_items = @cart.line_items
+    if line_items.empty?
       redirect_to products_url, alert: "Your cart is empty"
       return
-    elsif @cart.line_items.any? { |item| item.quantity <= 0 }
-      redirect_to cart_url, alert: "Item quantity must be at least 1"
+    elsif line_items.any? { |item| item.product.stock <= 0 }
+      redirect_to products_url, alert: "Item is out of stock"
       return
-    elsif @cart.line_items.any? { |item| item.quantity > item.product.stock }
+    elsif line_items.any? { |item| item.quantity > item.product.stock }
       redirect_to cart_url, alert: "Item exceeds stock"
       return
     end
@@ -26,6 +29,13 @@ class OrdersController < ApplicationController
     @order.user_id = current_user.id
     @order.order_number = SecureRandom.hex.upcase
     @order.add_line_items_from_cart(current_cart)
+
+    line_items = @order.line_items
+    if line_items.any? { |item| item.product.stock <= 0 }
+      redirect_to products_url, alert: "Item is out of stock"
+      line_items.each { |item| item.destroy if item.product.stock <= 0 }
+      return
+    end
 
     if @order.save
       @order.remove_stock_from_product
@@ -53,6 +63,11 @@ class OrdersController < ApplicationController
   def index
     add_breadcrumb "Your orders"
     @orders = Order.where(user_id: current_user).page(params[:page])
+  end
+
+  def index_all
+    add_breadcrumb "All orders"
+    @orders = Order.order(created_at: :desc).all.page(params[:page])
   end
 
   private
